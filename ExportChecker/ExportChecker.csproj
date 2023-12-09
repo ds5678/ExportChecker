@@ -2,12 +2,12 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="AsmResolver.PE" Version="4.8.0" />
+		<PackageReference Include="AsmResolver.PE" Version="5.5.0" />
 	</ItemGroup>
 
 </Project>
