@@ -3,4 +3,4 @@
 .vscode
 bin
 obj
-*.csproj.user
+*.user
