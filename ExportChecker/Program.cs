@@ -24,7 +24,7 @@ namespace ExportChecker
 
 		private static void Run(string path)
 		{
-			IPEImage peImage = PEImage.FromFile(path);
+			PEImage peImage = PEImage.FromFile(path);
 			if(peImage.Exports == null)
 			{
 				Console.WriteLine("File has no export directory");

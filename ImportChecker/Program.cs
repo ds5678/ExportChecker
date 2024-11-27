@@ -25,7 +25,7 @@ namespace ImportChecker
 
 		private static void Run(string path)
 		{
-			IPEImage peImage = PEImage.FromFile(path);
+			PEImage peImage = PEImage.FromFile(path);
 			if(peImage.Imports == null)
 			{
 				Console.WriteLine("File has no import directory");
@@ -36,7 +36,7 @@ namespace ImportChecker
 			for (int i = 0; i < peImage.Imports.Count; i++)
 			{
 				Console.WriteLine($"Module {i + 1}");
-				IImportedModule module = peImage.Imports[i];
+				ImportedModule module = peImage.Imports[i];
 				Console.WriteLine($"\tName: {module.Name}");
 				Console.WriteLine($"\tForwarderChain: {module.ForwarderChain}");
 				Console.WriteLine($"\tTimeDateStamp: {module.TimeDateStamp}");
