@@ -38,12 +38,14 @@ jobs:
     - name: Upload executable artifact
       uses: actions/upload-artifact@v4
       with:
+        name: ${{ matrix.config.project }}.exe
         path: ${{ matrix.config.project }}.exe
 
     - name: Upload Release Changelog (once)
       if: ${{ matrix.config.name == 'Import' }}
       uses: actions/upload-artifact@v4
       with:
+        name: ReleaseChangelog.md
         path: ReleaseChangelog.md
 
   release:
