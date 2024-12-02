@@ -61,4 +61,5 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         body_path: ReleaseChangelog.md
-        files: *.exe
+        files: |
+          *.exe
