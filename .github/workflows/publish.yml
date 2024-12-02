@@ -68,4 +68,3 @@ jobs:
         body_path: ./ReleaseChangelog/ReleaseChangelog.md
         files: |
           ./*/*.exe
-        token: ${{ secrets.GITHUB_TOKEN }}
