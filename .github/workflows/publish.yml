@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
@@ -26,11 +26,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-
-    - name: Install MinGW
-      run: |
-        sudo apt update
-        sudo apt install -y mingw-w64
 
     - name: Publish
       run: dotnet publish -c Release -r win-x64
