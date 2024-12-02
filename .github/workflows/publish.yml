@@ -64,4 +64,4 @@ jobs:
       with:
         body_path: ReleaseChangelog.md
         files: |
-          *.exe
+          ./*.exe
