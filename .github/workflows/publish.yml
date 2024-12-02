@@ -59,9 +59,13 @@ jobs:
       with:
         path: ./
 
+    - name: List all files
+      run: ls -R
+
     - name: Publish a release
       uses: softprops/action-gh-release@v2
       with:
         body_path: ReleaseChangelog.md
         files: |
           ./*.exe
+        token: ${{ secrets.GITHUB_TOKEN }}
