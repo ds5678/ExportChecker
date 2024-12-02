@@ -38,14 +38,14 @@ jobs:
     - name: Upload executable artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.config.project }}.exe
+        name: ${{ matrix.config.project }}
         path: ${{ matrix.config.project }}.exe
 
     - name: Upload Release Changelog (once)
       if: ${{ matrix.config.name == 'Import' }}
       uses: actions/upload-artifact@v4
       with:
-        name: ReleaseChangelog.md
+        name: ReleaseChangelog
         path: ReleaseChangelog.md
 
   release:
@@ -65,7 +65,7 @@ jobs:
     - name: Publish a release
       uses: softprops/action-gh-release@v2
       with:
-        body_path: ReleaseChangelog.md
+        body_path: ./ReleaseChangelog/ReleaseChangelog.md
         files: |
-          ./*.exe
+          ./*/*.exe
         token: ${{ secrets.GITHUB_TOKEN }}
