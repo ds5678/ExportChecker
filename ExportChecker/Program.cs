@@ -1,5 +1,9 @@
-﻿using AsmResolver.PE;
+using AsmResolver.PE;
+using ELFSharp.ELF;
+using ELFSharp.ELF.Sections;
 using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace ExportChecker;
 
@@ -7,7 +11,7 @@ internal class Program
 {
 	static void Main(string[] args)
 	{
-		if(args.Length != 1)
+		if (args.Length != 1)
 			Console.WriteLine("This program takes exactly one argument: the path to the pe assembly");
 
 		try
@@ -24,8 +28,23 @@ internal class Program
 
 	private static void Run(string path)
 	{
-		PEImage peImage = PEImage.FromFile(path);
-		if(peImage.Exports == null)
+		if (TryLoadPEImage(path, out PEImage? peImage))
+		{
+			PrintExportsForPE(peImage);
+		}
+		else if (TryLoadElf(path, out IELF? elfImage))
+		{
+			PrintExportsForElf(elfImage);
+		}
+		else
+		{
+			Console.WriteLine($"Failed to load binary from path: {path}");
+		}
+	}
+
+	private static void PrintExportsForPE(PEImage peImage)
+	{
+		if (peImage.Exports == null)
 		{
 			Console.WriteLine("File has no export directory");
 		}
@@ -46,6 +65,43 @@ internal class Program
 			}
 			Console.WriteLine();
 			Console.WriteLine($"File had {peImage.Exports.Entries.Count} export methods");
+		}
+	}
+
+	private static void PrintExportsForElf(IELF elfImage)
+	{
+		var functions = ((ISymbolTable)elfImage.GetSection(".symtab")).Entries.Where(x => x.Type == SymbolType.Function);
+		foreach(var f in functions)
+		{
+			Console.WriteLine(f.Name);
+		}
+	}
+
+	private static bool TryLoadPEImage(string path, [NotNullWhen(true)] out PEImage? peImage)
+	{
+		try
+		{
+			peImage = PEImage.FromFile(path);
+			return true;
+		}
+		catch
+		{
+			peImage = null;
+			return false;
+		}
+	}
+
+	private static bool TryLoadElf(string path, [NotNullWhen(true)] out IELF? elfImage)
+	{
+		try
+		{
+			elfImage = ELFReader.Load(path);
+			return true;
+		}
+		catch
+		{
+			elfImage = null;
+			return false;
 		}
 	}
 }
