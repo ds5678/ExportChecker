@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsmResolver.PE" Version="6.0.0-beta.3" />
+		<PackageReference Include="AsmResolver.PE" Version="6.0.0-beta.5" />
 		<PackageReference Include="ELFSharp" Version="2.17.3" />
 	</ItemGroup>
 

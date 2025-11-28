@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".github/dependabot.yml" />
+    <File Path=".github/workflows/publish.yml" />
+    <File Path=".github/workflows/test.yml" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="License.md" />
+    <File Path="README.md" />
+    <File Path="ReleaseChangelog.md" />
+  </Folder>
+  <Project Path="ExportChecker/ExportChecker.csproj" />
+  <Project Path="ImportChecker/ImportChecker.csproj" />
+</Solution>
