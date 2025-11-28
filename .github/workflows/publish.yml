@@ -33,7 +33,7 @@ jobs:
 
     - name: Move release executable to root
       shell: bash
-      run: mv ${{ matrix.config.project }}/bin/Release/net9.0/win-x64/publish/${{ matrix.config.project }}.exe .
+      run: mv ${{ matrix.config.project }}/bin/Release/net10.0/win-x64/publish/${{ matrix.config.project }}.exe .
 
     - name: Upload executable artifact
       uses: actions/upload-artifact@v4
