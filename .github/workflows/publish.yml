@@ -36,14 +36,14 @@ jobs:
       run: mv ${{ matrix.config.project }}/bin/Release/net10.0/win-x64/publish/${{ matrix.config.project }}.exe .
 
     - name: Upload executable artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: ${{ matrix.config.project }}
         path: ${{ matrix.config.project }}.exe
 
     - name: Upload Release Changelog (once)
       if: ${{ matrix.config.name == 'Import' }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: ReleaseChangelog
         path: ReleaseChangelog.md
