@@ -24,7 +24,7 @@ internal class Program
 			Console.WriteLine(ex.ToString());
 		}
 
-		Console.ReadLine();
+		//Console.ReadLine();
 	}
 
 	private static void Run(string path)
@@ -75,12 +75,17 @@ internal class Program
 
 	private static void PrintExportsForElf(IELF image)
 	{
-		var functions = ((ISymbolTable)image.GetSection(".symtab")).Entries.Where(x => x.Type == SymbolType.Function);
+		if (!image.TryGetSection(".dynsym", out ISection section))
+		{
+			Console.WriteLine("File has no symbol table");
+			return;
+		}
+		var functions = ((ISymbolTable)section).Entries.Where(x => x.Type == SymbolType.Function).Select(f => f.Name).Order();
 		foreach(var f in functions)
 		{
-			Console.WriteLine(f.Name);
+			Console.WriteLine(f);
 		}
-	}
+    }
 
 	private static void PrintExportsForMacho(MachO image)
 	{
