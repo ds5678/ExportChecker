@@ -24,7 +24,7 @@ internal class Program
 			Console.WriteLine(ex.ToString());
 		}
 
-		//Console.ReadLine();
+		Console.ReadLine();
 	}
 
 	private static void Run(string path)
@@ -85,7 +85,7 @@ internal class Program
 		{
 			Console.WriteLine(f);
 		}
-    }
+	}
 
 	private static void PrintExportsForMacho(MachO image)
 	{
